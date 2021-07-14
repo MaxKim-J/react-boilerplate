@@ -1,42 +1,46 @@
-const path = require('path')
+/* eslint-disable no-unused-vars */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-var-requires */
+
+const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-const CopyWebpackPlugin = require('copy-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const DotenvPlugin = require('dotenv-webpack');
 
-module.exports = (env) => ({
+module.exports = () => ({
   mode: 'production',
-  entry: "./src/index.ts",
+  entry: './src/index.ts',
   output: {
     publicPath: '/',
     filename: 'bundle.[hash].js',
-    path: path.join(__dirname, '../../', "dist")
+    path: path.join(__dirname, '../../', 'dist'),
   },
-  devtool: "source-map",
+  devtool: 'source-map',
   module: {
     rules: [
       {
         test: /\.(tsx?)|(js)$/,
-        exclude: "/node_modules",
+        exclude: '/node_modules',
         use: {
-          loader: "babel-loader",
+          loader: 'babel-loader',
           options: {
             presets: [
               '@babel/preset-env',
-              "@babel/preset-react",
-              ["@babel/preset-typescript", {
-                "isTSX": true,
-                "allExtensions": true,
-              }]
+              '@babel/preset-react',
+              ['@babel/preset-typescript', {
+                isTSX: true,
+                allExtensions: true,
+              }],
             ],
             plugins: [
               '@babel/proposal-class-properties',
-            ]
-          }
-        }
-      }
-    ]
+            ],
+          },
+        },
+      },
+    ],
   },
   plugins: [
     new CleanWebpackPlugin(),
@@ -47,7 +51,7 @@ module.exports = (env) => ({
         removeComments: true,
         minifyJS: true,
       },
-      hash: true
+      hash: true,
     }),
     new CopyWebpackPlugin({
       patterns: [
@@ -55,7 +59,7 @@ module.exports = (env) => ({
           from: './public/assets',
           to: './assets',
           toType: 'dir',
-          noErrorOnMissing: true
+          noErrorOnMissing: true,
         },
       ],
     }),
@@ -66,9 +70,9 @@ module.exports = (env) => ({
     // })
   ],
   resolve: {
-    extensions: [".ts", ".tsx", ".js", ".json"],
+    extensions: ['.ts', '.tsx', '.js', '.json'],
     alias: {
-      "@": path.join(__dirname, "src")
-    }
-  }
-})
+      '@': path.join(__dirname, 'src'),
+    },
+  },
+});

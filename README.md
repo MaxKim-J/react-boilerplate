@@ -2,26 +2,36 @@
 
 ## TODO
 
-- [ ] React
+- [x] React
 - [ ] Redux + Redux Toolkit
 - [ ] React Query
 - [ ] Styled Components
-- [ ] TypeScript
+- [x] TypeScript
 - [ ] Jest
 - [ ] Useable ENV
-- [ ] Babel : Typescript Compiling, React Plugin
-- [ ] WebPack : Hot Module Replacement, Path Alias, Sourcemap, Webpack bundle Analyzer, Dynamic Import(Tree shaking), split chunks
-- [ ] eslint, prettier
+- [x] Babel
+  - [x] Typescript Compiling
+  - [x] React Presets
+- [ ] WebPack
+  - [x] Hot Module Replacement
+  - [x] Path Alias
+  - [x] Sourcemap
+  - [ ] Webpack bundle Analyzer
+  - [ ] Dynamic Import(Tree shaking)
+  - [ ] split chunks option
+- [x] eslint
 - [ ] ~~docker~~
 
 ## FYI
 
 ### useable and separate ENV
+
 ### compile typescript with babel
 
 ### alias path
 ### not support CSS or SCSS
 
+### 
 ## Question
 
 ### Difference between babelrc and webpack babel loader config

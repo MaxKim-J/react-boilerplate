@@ -1,14 +1,9 @@
 import React from 'react';
 
-function App() {
-  const a = 1;
-
-  enum b {
-    a = 1,
-  }
+function App():React.FC {
   return (
-    <div>hello world...</div>
+    <div>React boilerplate</div>
   );
-};
+}
 
 export default App;
