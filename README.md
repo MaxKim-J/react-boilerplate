@@ -7,6 +7,7 @@
 - [ ] React Query
 - [ ] Styled Components
 - [x] TypeScript
+    - [x] TSC type checker
 - [ ] Jest
 - [ ] Useable ENV
 - [x] Babel

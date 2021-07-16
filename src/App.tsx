@@ -1,6 +1,6 @@
 import React from 'react';
 
-function App():React.FC {
+function App() {
   return (
     <div>React boilerplate</div>
   );
