@@ -25,6 +25,7 @@
   - [x] Dynamic Import - code splitting
   - [x] tree shaking(Minimize)
   - [x] split chunks option
+  - [x] file loader
 - [x] eslint
 - [ ] ~~docker~~
 

@@ -1,15 +1,30 @@
 import React, { Suspense } from 'react';
+import styled from 'styled-components';
 
-const Component = React.lazy(() => import('@/components/Component'));
+const Logo = React.lazy(() => import('@/components/Logo'));
+
+const StyledContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const StyledTitle = styled.div`
+  font-size:20px;
+`;
 
 function App() {
   return (
-    <>
-      <div>React boilerplate!!</div>
+    <StyledContainer>
       <Suspense fallback={<div>load..</div>}>
-        <Component />
+        <Logo />
       </Suspense>
-    </>
+      <StyledTitle>
+        <strong>React Boilerplate</strong>
+        {' '}
+        By Jonghyuk Max Kim
+      </StyledTitle>
+    </StyledContainer>
   );
 }
 

@@ -32,6 +32,17 @@ module.exports = (env) => ({
   module: {
     rules: [
       {
+        test: /\.(png|jpe?g|gif|svg)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: 'assets/images/[name].[hash].[ext]',
+            },
+          },
+        ],
+      },
+      {
         test: /\.(tsx?)|(js)$/,
         use: {
           loader: 'babel-loader',
@@ -47,6 +58,7 @@ module.exports = (env) => ({
               }],
             ],
             plugins: [
+              'babel-plugin-styled-components',
               '@babel/proposal-class-properties',
               '@babel/plugin-syntax-dynamic-import',
               [
@@ -80,16 +92,6 @@ module.exports = (env) => ({
         minifyJS: true,
       },
       hash: true,
-    }),
-    new CopyWebpackPlugin({
-      patterns: [
-        {
-          from: './public/assets',
-          to: './assets',
-          toType: 'dir',
-          noErrorOnMissing: true,
-        },
-      ],
     }),
     new DotenvPlugin({
       path: path.resolve(__dirname, `../env/.env.${env}`),
