@@ -50,6 +50,14 @@ module.exports = () => ({
             plugins: [
               '@babel/proposal-class-properties',
               '@babel/plugin-syntax-dynamic-import',
+              [
+                'module-resolver',
+                {
+                  alias: {
+                    '@': './src',
+                  },
+                },
+              ],
             ],
           },
         },
@@ -85,8 +93,5 @@ module.exports = () => ({
   ],
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.json'],
-    alias: {
-      '@': path.join(__dirname, 'src'),
-    },
   },
 });

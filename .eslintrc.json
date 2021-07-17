@@ -26,6 +26,8 @@
         "react/jsx-filename-extension": [1, { "extensions": [".tsx", ".ts"] }],
         "no-use-before-define": "off",
         "@typescript-eslint/no-use-before-define": ["error"],
-        "no-unused-var": "off"
+        "no-unused-var": "off",
+        "import/no-unresolved": "off",
+        "@typescript-eslint/explicit-module-boundary-types" : "off"
     }
 }
