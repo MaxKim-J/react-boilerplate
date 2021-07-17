@@ -8,7 +8,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const DotenvPlugin = require('dotenv-webpack');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
-module.exports = () => ({
+module.exports = (env) => ({
   mode: 'production',
   entry: './src/index.ts',
   output: {
@@ -91,11 +91,10 @@ module.exports = () => ({
         },
       ],
     }),
-    // new DotenvPlugin({
-    //   path: path.join(__dirname, "/env/dev.env"),
-    //   safe: true,
-    //   allowEmptyValues: true,
-    // })
+    new DotenvPlugin({
+      path: path.resolve(__dirname, `../env/.env.${env}`),
+      allowEmptyValues: true,
+    }),
   ],
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.json'],

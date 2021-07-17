@@ -5,10 +5,12 @@
   "author": "Max Jonghyuk Kim",
   "license": "MIT",
   "scripts": {
-    "dev": "webpack-dev-server --env NODE_ENV=development --config ./config/webpack/webpack.config.dev.js --open",
-    "build": "webpack --env NODE_ENV=production --config ./config/webpack/webpack.config.js",
-    "check": "tsc",
-    "analyze": "webpack-bundle-analyzer ./analysis/bundle-stats.json"
+    "start:dev": "webpack-dev-server --env development --config ./config/webpack/webpack.config.dev.js --open",
+    "start:prod": "webpack-dev-server --env production --config ./config/webpack/webpack.config.dev.js --open",
+    "build:dev": "webpack --config --env development ./config/webpack/webpack.config.js",
+    "build:prod": "webpack --config --env production ./config/webpack/webpack.config.js",
+    "type-check": "tsc",
+    "bundle-analyze": "webpack-bundle-analyzer ./analysis/bundle-stats.json"
   },
   "dependencies": {
     "@types/react": "^17.0.14",

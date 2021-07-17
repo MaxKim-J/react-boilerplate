@@ -7,98 +7,100 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const DotenvPlugin = require('dotenv-webpack');
 
-module.exports = () => ({
-  mode: 'development',
-  entry: './src/index.ts',
-  output: {
-    publicPath: '/',
-    filename: 'bundle.[name].[hash].js',
-    path: path.join(__dirname, '../../', 'dist'),
-  },
-  devtool: 'eval-cheap-source-map',
-  optimization: {
-    minimize: true,
-    splitChunks: {
-      cacheGroups: {
-        vendor: {
-          chunks: 'initial',
-          name: 'vendor',
-          enforce: true,
-        },
-      },
+module.exports = (env) => {
+  console.log(env, 'env!');
+  return {
+    mode: 'development',
+    entry: './src/index.ts',
+    output: {
+      publicPath: '/',
+      filename: 'bundle.[name].[hash].js',
+      path: path.join(__dirname, '../../', 'dist'),
     },
-  },
-  module: {
-    rules: [
-      {
-        test: /\.(tsx?)|(js)$/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: [
-              ['@babel/preset-env', {
-                modules: false,
-              }],
-              '@babel/preset-react',
-              ['@babel/preset-typescript', {
-                isTSX: true,
-                allExtensions: true,
-              }],
-            ],
-            plugins: [
-              '@babel/proposal-class-properties',
-              '@babel/plugin-syntax-dynamic-import',
-              [
-                'module-resolver',
-                {
-                  alias: {
-                    '@': './src',
-                  },
-                },
-              ],
-            ],
+    devtool: 'eval-cheap-source-map',
+    optimization: {
+      minimize: true,
+      splitChunks: {
+        cacheGroups: {
+          vendor: {
+            chunks: 'initial',
+            name: 'vendor',
+            enforce: true,
           },
         },
       },
-    ],
-  },
-  plugins: [
-    new CleanWebpackPlugin(),
-    new HtmlWebpackPlugin({
-      template: './public/index.html',
-      minify: {
-        collapseWhitespace: true,
-        removeComments: true,
-        minifyJS: true,
-      },
-      hash: true,
-    }),
-    new CopyWebpackPlugin({
-      patterns: [
+    },
+    module: {
+      rules: [
         {
-          from: './public/assets',
-          to: './assets',
-          toType: 'dir',
-          noErrorOnMissing: true,
+          test: /\.(tsx?)|(js)$/,
+          use: {
+            loader: 'babel-loader',
+            options: {
+              presets: [
+                ['@babel/preset-env', {
+                  modules: false,
+                }],
+                '@babel/preset-react',
+                ['@babel/preset-typescript', {
+                  isTSX: true,
+                  allExtensions: true,
+                }],
+              ],
+              plugins: [
+                '@babel/proposal-class-properties',
+                '@babel/plugin-syntax-dynamic-import',
+                [
+                  'module-resolver',
+                  {
+                    alias: {
+                      '@': './src',
+                    },
+                  },
+                ],
+              ],
+            },
+          },
         },
       ],
-    }),
-    // new DotenvPlugin({
-    //   path: path.join(__dirname, "/env/dev.env"),
-    //   safe: true,
-    //   allowEmptyValues: true,
-    // })
-  ],
-  devServer: {
-    contentBase: path.join(__dirname, 'dist'),
-    compress: true,
-    port: 3000,
-    historyApiFallback: true,
-    overlay: true,
-    clientLogLevel: 'error',
-    hot: true,
-  },
-  resolve: {
-    extensions: ['.ts', '.tsx', '.js', '.json'],
-  },
-});
+    },
+    plugins: [
+      new CleanWebpackPlugin(),
+      new HtmlWebpackPlugin({
+        template: './public/index.html',
+        minify: {
+          collapseWhitespace: true,
+          removeComments: true,
+          minifyJS: true,
+        },
+        hash: true,
+      }),
+      new CopyWebpackPlugin({
+        patterns: [
+          {
+            from: './public/assets',
+            to: './assets',
+            toType: 'dir',
+            noErrorOnMissing: true,
+          },
+        ],
+      }),
+      new DotenvPlugin({
+        path: path.resolve(__dirname, `../env/.env.${env}`),
+        allowEmptyValues: true,
+      }),
+    ],
+    devServer: {
+      contentBase: path.join(__dirname, 'dist'),
+      compress: true,
+      port: 3000,
+      historyApiFallback: true,
+      overlay: true,
+      clientLogLevel: 'error',
+      hot: true,
+    },
+    resolve: {
+      extensions: ['.ts', '.tsx', '.js', '.json'],
+    },
+  };
+};

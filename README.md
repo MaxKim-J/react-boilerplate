@@ -13,7 +13,7 @@
     - [x] TSC type checker
     - [x] path alias
 - [ ] Jest
-- [ ] Multiple ENV change
+- [x] Multiple ENV change
 - [x] Babel
   - [x] Typescript Compiling
   - [x] React Presets
@@ -23,9 +23,8 @@
   - [x] Sourcemap
   - [x] Webpack bundle Analyzer
   - [x] Dynamic Import - code splitting
-  - [x] tree shaking
+  - [x] tree shaking(Minimize)
   - [x] split chunks option
-  - [x] minify
 - [x] eslint
 - [ ] ~~docker~~
 
