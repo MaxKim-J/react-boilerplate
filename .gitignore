@@ -158,6 +158,8 @@ dist
 
 node_modules
 
+analysis
+
 *.sublime*
 
 psd

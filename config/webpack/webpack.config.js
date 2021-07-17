@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-var-requires */
 
 const path = require('path');
@@ -8,6 +6,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const DotenvPlugin = require('dotenv-webpack');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 module.exports = () => ({
   mode: 'production',
@@ -66,6 +65,13 @@ module.exports = () => ({
   },
   plugins: [
     new CleanWebpackPlugin(),
+    new BundleAnalyzerPlugin({
+      openAnalyzer: false,
+      analyzerMode: 'static',
+      reportFilename: '../analysis/bundle-analysis.html',
+      generateStatsFile: true,
+      statsFilename: '../analysis/bundle-stats.json',
+    }),
     new HtmlWebpackPlugin({
       template: './public/index.html',
       minify: {
