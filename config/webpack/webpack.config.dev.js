@@ -19,11 +19,12 @@ module.exports = () => ({
   },
   devtool: 'eval-cheap-source-map',
   optimization: {
+    minimize: true,
     splitChunks: {
       cacheGroups: {
         vendor: {
           chunks: 'initial',
-          name: 'commons',
+          name: 'vendor',
           enforce: true,
         },
       },
@@ -37,7 +38,9 @@ module.exports = () => ({
           loader: 'babel-loader',
           options: {
             presets: [
-              '@babel/preset-env',
+              ['@babel/preset-env', {
+                modules: false,
+              }],
               '@babel/preset-react',
               ['@babel/preset-typescript', {
                 isTSX: true,
@@ -46,6 +49,7 @@ module.exports = () => ({
             ],
             plugins: [
               '@babel/proposal-class-properties',
+              '@babel/plugin-syntax-dynamic-import',
             ],
           },
         },

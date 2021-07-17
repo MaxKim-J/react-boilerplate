@@ -19,6 +19,7 @@ module.exports = () => ({
   },
   devtool: 'source-map',
   optimization: {
+    minimize: true,
     splitChunks: {
       cacheGroups: {
         vendor: {
@@ -37,7 +38,9 @@ module.exports = () => ({
           loader: 'babel-loader',
           options: {
             presets: [
-              '@babel/preset-env',
+              ['@babel/preset-env', {
+                modules: false,
+              }],
               '@babel/preset-react',
               ['@babel/preset-typescript', {
                 isTSX: true,
@@ -46,6 +49,7 @@ module.exports = () => ({
             ],
             plugins: [
               '@babel/proposal-class-properties',
+              '@babel/plugin-syntax-dynamic-import',
             ],
           },
         },

@@ -7,6 +7,8 @@
 - [ ] Redux + Redux Toolkit
 - [ ] React Query
 - [ ] Styled Components
+    - [ ] babel setting(css loader)
+    - [ ] webpack plugin
 - [x] TypeScript
     - [x] TSC type checker
 - [ ] Jest
@@ -19,8 +21,10 @@
   - [x] Path Alias
   - [x] Sourcemap
   - [ ] Webpack bundle Analyzer
-  - [ ] Dynamic Import(Tree shaking)
+  - [ ] Dynamic Import - code splitting
+  - [ ] tree shaking
   - [x] split chunks option
+  - [x] minify
 - [x] eslint
 - [ ] ~~docker~~
 
