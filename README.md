@@ -11,16 +11,17 @@
     - [ ] webpack plugin
 - [x] TypeScript
     - [x] TSC type checker
+    - [x] path alias
 - [ ] Jest
 - [ ] Multiple ENV change
 - [x] Babel
   - [x] Typescript Compiling
   - [x] React Presets
-- [ ] WebPack
+  - [x] Apply path alias when compiling typescript
+- [x] WebPack
   - [x] Hot Module Replacement
-  - [x] Path Alias
   - [x] Sourcemap
-  - [ ] Webpack bundle Analyzer
+  - [x] Webpack bundle Analyzer
   - [x] Dynamic Import - code splitting
   - [x] tree shaking
   - [x] split chunks option
@@ -28,19 +29,24 @@
 - [x] eslint
 - [ ] ~~docker~~
 
-## FYI
+## Distinctive Features
 
-### useable and separate ENV
+### Compile typescript with babel
 
-### compile typescript with babel
+... and check type later, with yarn command
 
-### alias path
-### not support CSS or SCSS
+### Extendable ENV
 
-### 
-## Question
+Just add ENV and yarn command
 
-### Difference between babelrc and webpack babel loader config
+### path alias
+
+should modify both babel and tsconfig
+
+### Webpack bundle analyzer
+
+Generate `analysis` file when building. Also, You can run analysis with `yarn analyze` command via 8888 port
+
 
 ## Reference
 
