@@ -13,7 +13,7 @@ module.exports = (env) => ({
   entry: './src/index.ts',
   output: {
     publicPath: '/',
-    filename: 'bundle.[name].[chunkhash].js',
+    filename: 'assets/js/bundle.[name].[chunkhash].js',
     path: path.join(__dirname, '../../', 'dist'),
   },
   devtool: 'source-map',

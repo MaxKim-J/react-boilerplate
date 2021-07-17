@@ -6,9 +6,8 @@
 - [ ] React Router
 - [ ] Redux + Redux Toolkit
 - [ ] React Query
-- [ ] Styled Components
-    - [ ] babel setting(css loader)
-    - [ ] webpack plugin
+- [x] Styled Components
+    - [x] babel setting(plugin)
 - [x] TypeScript
     - [x] TSC type checker
     - [x] path alias
@@ -26,6 +25,8 @@
   - [x] tree shaking(Minimize)
   - [x] split chunks option
   - [x] file loader
+  - [ ] CSS loader?
+  - [ ] eslint loader?
 - [x] eslint
 - [ ] ~~docker~~
 

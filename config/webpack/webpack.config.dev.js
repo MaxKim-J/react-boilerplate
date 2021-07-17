@@ -12,7 +12,7 @@ module.exports = (env) => ({
   entry: './src/index.ts',
   output: {
     publicPath: '/',
-    filename: 'bundle.[name].[hash].js',
+    filename: 'assets/js/bundle.[name].[hash].js',
     path: path.join(__dirname, '../../', 'dist'),
   },
   devtool: 'eval-cheap-source-map',
