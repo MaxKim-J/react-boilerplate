@@ -35,6 +35,12 @@
 
 ... and check type later, with yarn command
 
+### Strict ESlint and TS rules.
+
+While compiling typescript with babel, type checking is not operating simultaneously.
+So, Boilerplate should have strict rules to detect bugs as much as possible.
+You can exclude or disable those rules as you want.
+
 ### Extendable ENV
 
 Just add ENV and yarn command
