@@ -3,6 +3,7 @@
 ## TODO
 
 - [x] React
+- [ ] React Router
 - [ ] Redux + Redux Toolkit
 - [ ] React Query
 - [ ] Styled Components
@@ -19,8 +20,7 @@
   - [x] Sourcemap
   - [ ] Webpack bundle Analyzer
   - [ ] Dynamic Import(Tree shaking)
-  - [ ] split chunks option
-  - [ ] nodeExternals
+  - [x] split chunks option
 - [x] eslint
 - [ ] ~~docker~~
 

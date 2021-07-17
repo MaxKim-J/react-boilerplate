@@ -17,13 +17,13 @@ module.exports = () => ({
     filename: 'bundle.[name].[hash].js',
     path: path.join(__dirname, '../../', 'dist'),
   },
-  devtool: 'source-map',
+  devtool: 'eval-cheap-source-map',
   optimization: {
     splitChunks: {
       cacheGroups: {
         vendor: {
           chunks: 'initial',
-          name: 'vendor',
+          name: 'commons',
           enforce: true,
         },
       },
