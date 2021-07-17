@@ -3,7 +3,7 @@ import styled, { keyframes } from 'styled-components';
 import logoImage from '@/assets/images/react.png';
 
 const turn = keyframes`
-  0% {
+  100% {
     transform: rotate(360deg);
   }
 `;
@@ -11,7 +11,7 @@ const turn = keyframes`
 const StyledLogo = styled.img`
   width: 500px;
   height: auto;
-  animation: ${turn} 10s 5s infinite linear;
+  animation: ${turn} 10s 0s infinite linear;
 `;
 
 function Logo() {

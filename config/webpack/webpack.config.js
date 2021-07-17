@@ -84,6 +84,18 @@ module.exports = (env) => ({
       generateStatsFile: true,
       statsFilename: '../analysis/bundle-stats.json',
     }),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: 'public',
+          to: './',
+          toType: 'dir',
+          globOptions: {
+            ignore: ['./index.html'],
+          },
+        },
+      ],
+    }),
     new HtmlWebpackPlugin({
       template: './public/index.html',
       minify: {

@@ -7,102 +7,111 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const DotenvPlugin = require('dotenv-webpack');
 
-module.exports = (env) => {
-  console.log(env, 'env!');
-  return {
-    mode: 'development',
-    entry: './src/index.ts',
-    output: {
-      publicPath: '/',
-      filename: 'bundle.[name].[hash].js',
-      path: path.join(__dirname, '../../', 'dist'),
-    },
-    devtool: 'eval-cheap-source-map',
-    optimization: {
-      minimize: true,
-      splitChunks: {
-        cacheGroups: {
-          vendor: {
-            chunks: 'initial',
-            name: 'vendor',
-            enforce: true,
-          },
+module.exports = (env) => ({
+  mode: 'development',
+  entry: './src/index.ts',
+  output: {
+    publicPath: '/',
+    filename: 'bundle.[name].[hash].js',
+    path: path.join(__dirname, '../../', 'dist'),
+  },
+  devtool: 'eval-cheap-source-map',
+  optimization: {
+    minimize: true,
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          chunks: 'initial',
+          name: 'vendor',
+          enforce: true,
         },
       },
     },
-    module: {
-      rules: [
-        {
-          test: /\.(png|jpe?g|gif|svg)$/i,
-          use: [
-            {
-              loader: 'file-loader',
-              options: {
-                name: 'assets/images/[name].[hash].[ext]',
-              },
-            },
-          ],
-        },
-        {
-          test: /\.(tsx?)|(js)$/,
-          use: {
-            loader: 'babel-loader',
+  },
+  module: {
+    rules: [
+      {
+        test: /\.(png|jpe?g|gif|svg)$/i,
+        use: [
+          {
+            loader: 'file-loader',
             options: {
-              presets: [
-                ['@babel/preset-env', {
-                  modules: false,
-                }],
-                '@babel/preset-react',
-                ['@babel/preset-typescript', {
-                  isTSX: true,
-                  allExtensions: true,
-                }],
-              ],
-              plugins: [
-                'babel-plugin-styled-components',
-                '@babel/proposal-class-properties',
-                '@babel/plugin-syntax-dynamic-import',
-                [
-                  'module-resolver',
-                  {
-                    alias: {
-                      '@': './src',
-                    },
-                  },
-                ],
-              ],
+              name: 'assets/images/[name].[hash].[ext]',
             },
+          },
+        ],
+      },
+      {
+        test: /\.(tsx?)|(js)$/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: [
+              ['@babel/preset-env', {
+                modules: false,
+              }],
+              '@babel/preset-react',
+              ['@babel/preset-typescript', {
+                isTSX: true,
+                allExtensions: true,
+              }],
+            ],
+            plugins: [
+              'babel-plugin-styled-components',
+              '@babel/proposal-class-properties',
+              '@babel/plugin-syntax-dynamic-import',
+              [
+                'module-resolver',
+                {
+                  alias: {
+                    '@': './src',
+                  },
+                },
+              ],
+            ],
+          },
+        },
+      },
+    ],
+  },
+  plugins: [
+    new CleanWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      template: './public/index.html',
+      minify: {
+        collapseWhitespace: true,
+        removeComments: true,
+        minifyJS: true,
+      },
+      hash: true,
+    }),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: 'public',
+          to: './',
+          toType: 'dir',
+          globOptions: {
+            ignore: ['./index.html'],
           },
         },
       ],
-    },
-    plugins: [
-      new CleanWebpackPlugin(),
-      new HtmlWebpackPlugin({
-        template: './public/index.html',
-        minify: {
-          collapseWhitespace: true,
-          removeComments: true,
-          minifyJS: true,
-        },
-        hash: true,
-      }),
-      new DotenvPlugin({
-        path: path.resolve(__dirname, `../env/.env.${env}`),
-        allowEmptyValues: true,
-      }),
-    ],
-    devServer: {
-      contentBase: path.join(__dirname, 'dist'),
-      compress: true,
-      port: 3000,
-      historyApiFallback: true,
-      overlay: true,
-      clientLogLevel: 'error',
-      hot: true,
-    },
-    resolve: {
-      extensions: ['.ts', '.tsx', '.js', '.json'],
-    },
-  };
-};
+    }),
+    new DotenvPlugin({
+      path: path.resolve(__dirname, `../env/.env.${env}`),
+      allowEmptyValues: true,
+    }),
+  ],
+  devServer: {
+    contentBase: path.join(__dirname, 'dist'),
+    compress: true,
+    port: 3000,
+    historyApiFallback: true,
+    overlay: true,
+    clientLogLevel: 'error',
+    hot: true,
+  },
+  resolve: {
+    extensions: ['.ts', '.tsx', '.js', '.json'],
+  },
+});
