@@ -20,6 +20,7 @@
   - [ ] Webpack bundle Analyzer
   - [ ] Dynamic Import(Tree shaking)
   - [ ] split chunks option
+  - [ ] nodeExternals
 - [x] eslint
 - [ ] ~~docker~~
 

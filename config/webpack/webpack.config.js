@@ -14,15 +14,25 @@ module.exports = () => ({
   entry: './src/index.ts',
   output: {
     publicPath: '/',
-    filename: 'bundle.[hash].js',
+    filename: 'bundle.[name].[chunkhash].js',
     path: path.join(__dirname, '../../', 'dist'),
   },
   devtool: 'source-map',
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          chunks: 'initial',
+          name: 'vendor',
+          enforce: true,
+        },
+      },
+    },
+  },
   module: {
     rules: [
       {
         test: /\.(tsx?)|(js)$/,
-        exclude: '/node_modules',
         use: {
           loader: 'babel-loader',
           options: {
