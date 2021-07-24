@@ -25,7 +25,6 @@
   - [x] tree shaking(Minimize)
   - [x] split chunks option
   - [x] file loader
-  - [ ] CSS loader?
   - [x] eslint loader
 - [x] eslint
 - [ ] ~~docker~~
