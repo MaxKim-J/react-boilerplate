@@ -45,41 +45,19 @@ yarn start:prod
 yarn build:dev
 yarn build:prod
 ```
-
-You can add an custom environment. Requiring new `.env` file and modifying package.json command. If you want to add `.stage.env` to project, you should do like this.
-
-```shell
-config
-  |- .env.production
-  |- .env.development
-  |- .env.stage # add new .env.stage file
-```
-
-```json
-// add new build, start commands in package.json
-// --env args should be same with a new env file suffix(development, production, stage... etc)
- "scripts": {
-    "start:dev": "webpack-dev-server --env development --config ./config/webpack/webpack.config.dev.js --open",
-    "start:prod": "webpack-dev-server --env production --config ./config/webpack/webpack.config.dev.js --open",
-    "start:stage": "webpack-dev-server --env stage --config ./config/webpack/webpack.config.dev.js --open",
-    "build:dev": "webpack --env development --config ./config/webpack/webpack.config.js",
-    "build:prod": "webpack --env production --config ./config/webpack/webpack.config.js",
-    "build:stage": "webpack --env stage --config ./config/webpack/webpack.config.js",
-    ...
-  },
-```
 ## Distinctive Features
+
+### Fully configurable
+
+You can modify webpack and babel settings as you want in `webpack.config`.
 
 ### Compile typescript with babel
 
-reason
-... and check type later, with yarn command
+This boilerplate compile typescript with babel for better [build performance and using a single loader in webpack](https://iamturns.com/typescript-babel/).
 
 ### Code Splitting with React.lazy
 
-you can split the bundle with React.lazy
-
-### Tree Shaking
+You can split the bundle with React.lazy and dynamic import syntax.
 
 ### Strict ESlint and TS rules.
 
@@ -94,20 +72,71 @@ If you want to enable eslint error checking in vscode, edit settings.json
   ...
 ```
 
-Also capturing error in start and build process. 
+Also, ESlint error can stopping build process or operating dev server by `eslint-webpack-plugin`
 
 ### Extendable ENV
 
-Just add ENV and yarn command
+You can add an custom environment. Requiring new `.env` file and modifying package.json command. If you want to add `.stage.env` to project, you should do like this.
+
+```shell
+config
+  |- .env.production
+  |- .env.development
+  |- .env.stage # add new .env.stage file
+```
+
+```json
+// Add new build, start commands in package.json
+// --env args should be same with a new env file suffix(development, production, stage... etc)
+ "scripts": {
+    "start:dev": "webpack-dev-server --env development --config ./config/webpack/webpack.config.dev.js --open",
+    "start:prod": "webpack-dev-server --env production --config ./config/webpack/webpack.config.dev.js --open",
+    "start:stage": "webpack-dev-server --env stage --config ./config/webpack/webpack.config.dev.js --open",
+    "build:dev": "webpack --env development --config ./config/webpack/webpack.config.js",
+    "build:prod": "webpack --env production --config ./config/webpack/webpack.config.js",
+    "build:stage": "webpack --env stage --config ./config/webpack/webpack.config.js",
+    ...
+  },
+```
 
 ### Path Alias
 
-should modify both babel and tsconfig
+`./src` path alias(`@`) is already set in `tsconfig` and `babel module resolver`. If you want another custom path alias, you should modify both babel and tsconfig settings.
 
+```js
+  // webpack.config.js
+  ...
+  plugins: [
+    'babel-plugin-styled-components',
+    '@babel/proposal-class-properties',
+    '@babel/plugin-syntax-dynamic-import',
+    [
+      'module-resolver',
+      {
+        alias: {
+          '@': './src',
+          '@components': './src/components', // add new path alias
+        },
+      },
+    ],
+  ],
+  ...
+```
+
+```json
+  // tsconfig.json
+  {
+    ...
+    "paths": {
+      "@/*": ["src/*"],
+      "@components/*": ["src/components/*"], // add new path alias
+    },
+    ...
+  }
+```
 ### Webpack bundle analyzer
 
-Generate `analysis` file when building. Also, You can run analysis with `yarn analyze` command via 8888 port
-
+Generate `analysis` folder and reporting HTML when building. Also, You can run analysis with `yarn analyze` command via 8888 port
 
 ## Reference
 
