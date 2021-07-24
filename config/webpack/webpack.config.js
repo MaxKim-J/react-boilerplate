@@ -7,6 +7,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const DotenvPlugin = require('dotenv-webpack');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const ESLintPlugin = require('eslint-webpack-plugin');
 
 module.exports = (env) => ({
   mode: 'production',
@@ -14,7 +15,7 @@ module.exports = (env) => ({
   output: {
     publicPath: '/',
     filename: 'assets/js/bundle.[name].[chunkhash].js',
-    path: path.join(__dirname, '../../', 'dist'),
+    path: path.resolve(__dirname, '../../', 'dist'),
   },
   devtool: 'source-map',
   optimization: {
@@ -108,6 +109,9 @@ module.exports = (env) => ({
     new DotenvPlugin({
       path: path.resolve(__dirname, `../env/.env.${env}`),
       allowEmptyValues: true,
+    }),
+    new ESLintPlugin({
+      extensions: ['ts', 'js', 'jsx', 'tsx'],
     }),
   ],
   resolve: {

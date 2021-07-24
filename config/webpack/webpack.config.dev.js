@@ -6,6 +6,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const DotenvPlugin = require('dotenv-webpack');
+const ESLintPlugin = require('eslint-webpack-plugin');
 
 module.exports = (env) => ({
   mode: 'development',
@@ -13,7 +14,7 @@ module.exports = (env) => ({
   output: {
     publicPath: '/',
     filename: 'assets/js/bundle.[name].[hash].js',
-    path: path.join(__dirname, '../../', 'dist'),
+    path: path.resolve(__dirname, '../../', 'dist'),
   },
   devtool: 'eval-cheap-source-map',
   optimization: {
@@ -101,9 +102,12 @@ module.exports = (env) => ({
       path: path.resolve(__dirname, `../env/.env.${env}`),
       allowEmptyValues: true,
     }),
+    new ESLintPlugin({
+      extensions: ['ts', 'js', 'jsx', 'tsx'],
+    }),
   ],
   devServer: {
-    contentBase: path.join(__dirname, 'dist'),
+    contentBase: path.resolve(__dirname, '../../', 'dist'),
     compress: true,
     port: 3000,
     historyApiFallback: true,

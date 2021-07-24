@@ -26,7 +26,7 @@
   - [x] split chunks option
   - [x] file loader
   - [ ] CSS loader?
-  - [ ] eslint loader?
+  - [x] eslint loader
 - [x] eslint
 - [ ] ~~docker~~
 
@@ -34,19 +34,33 @@
 
 ### Compile typescript with babel
 
+reason
 ... and check type later, with yarn command
+
+### Code Splitting with dynamic import
+
+### Tree Shaking
 
 ### Strict ESlint and TS rules.
 
 While compiling typescript with babel, type checking is not operating simultaneously.
 So, Boilerplate should have strict rules to detect bugs as much as possible.
-You can exclude or disable those rules as you want.
+You can exclude or disable those rules as you want.  
+If you want to enable eslint error checking in vscode, edit settings.json
+
+```json
+  ...
+  "eslint.validate": ["typescript", "typescriptreact"]
+  ...
+```
+
+Also capturing error in start and build process. 
 
 ### Extendable ENV
 
 Just add ENV and yarn command
 
-### path alias
+### Path Alias
 
 should modify both babel and tsconfig
 
