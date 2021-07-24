@@ -1,17 +1,15 @@
 # React Boilerplate
 
+Modern SPA React boilerplate
+
 ## TODO
 
 - [x] React
-- [ ] React Router
-- [ ] Redux + Redux Toolkit
-- [ ] React Query
 - [x] Styled Components
     - [x] babel setting(plugin)
 - [x] TypeScript
     - [x] TSC type checker
     - [x] path alias
-- [ ] Jest
 - [x] Multiple ENV change
 - [x] Babel
   - [x] Typescript Compiling
@@ -29,6 +27,47 @@
 - [x] eslint
 - [ ] ~~docker~~
 
+## Usage
+
+git clone and start development your React App
+
+```shell
+git clone https://github.com/MaxKim-J/react-boilerplate
+```
+
+`yarn start:${env}` for HMR  
+`yarn build:${env}` for production build  
+
+```shell
+yarn start:dev
+yarn start:prod
+
+yarn build:dev
+yarn build:prod
+```
+
+You can add an custom environment. Requiring new `.env` file and modifying package.json command. If you want to add `.stage.env` to project, you should do like this.
+
+```shell
+config
+  |- .env.production
+  |- .env.development
+  |- .env.stage # add new .env.stage file
+```
+
+```json
+// add new build, start commands in package.json
+// --env args should be same with a new env file suffix(development, production, stage... etc)
+ "scripts": {
+    "start:dev": "webpack-dev-server --env development --config ./config/webpack/webpack.config.dev.js --open",
+    "start:prod": "webpack-dev-server --env production --config ./config/webpack/webpack.config.dev.js --open",
+    "start:stage": "webpack-dev-server --env stage --config ./config/webpack/webpack.config.dev.js --open",
+    "build:dev": "webpack --env development --config ./config/webpack/webpack.config.js",
+    "build:prod": "webpack --env production --config ./config/webpack/webpack.config.js",
+    "build:stage": "webpack --env stage --config ./config/webpack/webpack.config.js",
+    ...
+  },
+```
 ## Distinctive Features
 
 ### Compile typescript with babel
@@ -36,7 +75,9 @@
 reason
 ... and check type later, with yarn command
 
-### Code Splitting with dynamic import
+### Code Splitting with React.lazy
+
+you can split the bundle with React.lazy
 
 ### Tree Shaking
 
