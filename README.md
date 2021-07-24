@@ -95,7 +95,6 @@ config
     "build:dev": "webpack --env development --config ./config/webpack/webpack.config.js",
     "build:prod": "webpack --env production --config ./config/webpack/webpack.config.js",
     "build:stage": "webpack --env stage --config ./config/webpack/webpack.config.js",
-    ...
   },
 ```
 
@@ -126,12 +125,10 @@ config
 ```json
   // tsconfig.json
   {
-    ...
     "paths": {
       "@/*": ["src/*"],
       "@components/*": ["src/components/*"], // add new path alias
     },
-    ...
   }
 ```
 ### Webpack bundle analyzer
