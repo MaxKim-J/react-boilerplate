@@ -106,7 +106,7 @@ module.exports = (env) => ({
       hash: true,
     }),
     new DotenvPlugin({
-      path: path.resolve(__dirname, `../env/.env.${env}`),
+      path: path.resolve(__dirname, `../env/.env.${env.env}`),
       allowEmptyValues: true,
     }),
     new ESLintPlugin({

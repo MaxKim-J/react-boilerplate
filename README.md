@@ -89,12 +89,12 @@ config
 // Add new build, start commands in package.json
 // --env args should be same with a new env file suffix(development, production, stage... etc)
  "scripts": {
-    "start:dev": "webpack-dev-server --env development --config ./config/webpack/webpack.config.dev.js --open",
-    "start:prod": "webpack-dev-server --env production --config ./config/webpack/webpack.config.dev.js --open",
-    "start:stage": "webpack-dev-server --env stage --config ./config/webpack/webpack.config.dev.js --open",
-    "build:dev": "webpack --env development --config ./config/webpack/webpack.config.js",
-    "build:prod": "webpack --env production --config ./config/webpack/webpack.config.js",
-    "build:stage": "webpack --env stage --config ./config/webpack/webpack.config.js",
+    "start:dev": "webpack serve --env=env=development --config ./config/webpack/webpack.config.dev.js --open",
+    "start:prod": "webpack serve --env=env=production --config ./config/webpack/webpack.config.dev.js --open",
+    "start:stage": "webpack serve --env=env=stage --config ./config/webpack/webpack.config.dev.js --open",
+    "build:dev": "webpack --env=env=development --config ./config/webpack/webpack.config.js",
+    "build:prod": "webpack --env=env=production --config ./config/webpack/webpack.config.js",
+    "build:stage": "webpack --env=env=stage --config ./config/webpack/webpack.config.js",
   },
 ```
 

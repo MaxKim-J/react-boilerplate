@@ -2,10 +2,10 @@
 
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const DotenvPlugin = require('dotenv-webpack');
 const ESLintPlugin = require('eslint-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = (env) => ({
   mode: 'development',
@@ -98,7 +98,7 @@ module.exports = (env) => ({
       ],
     }),
     new DotenvPlugin({
-      path: path.resolve(__dirname, `../env/.env.${env}`),
+      path: path.resolve(__dirname, `../env/.env.${env.env}`),
       allowEmptyValues: true,
     }),
     new ESLintPlugin({
@@ -109,9 +109,12 @@ module.exports = (env) => ({
     contentBase: path.resolve(__dirname, '../../', 'dist'),
     compress: true,
     port: 3000,
-    historyApiFallback: true,
-    overlay: true,
+    overlay: {
+      warnings: false,
+      errors: true,
+    },
     clientLogLevel: 'error',
+    historyApiFallback: true,
     hot: true,
   },
   resolve: {

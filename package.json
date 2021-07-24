@@ -5,10 +5,10 @@
   "author": "Max Jonghyuk Kim",
   "license": "MIT",
   "scripts": {
-    "start:dev": "webpack-dev-server --env development --config ./config/webpack/webpack.config.dev.js --open",
-    "start:prod": "webpack-dev-server --env production --config ./config/webpack/webpack.config.dev.js --open",
-    "build:dev": "webpack --env development --config ./config/webpack/webpack.config.js",
-    "build:prod": "webpack --env production --config ./config/webpack/webpack.config.js",
+    "start:dev": "webpack serve --env=env=development --config ./config/webpack/webpack.config.dev.js --open",
+    "start:prod": "webpack serve --env=env=production --config ./config/webpack/webpack.config.dev.js --open",
+    "build:dev": "webpack --env=env=development --config ./config/webpack/webpack.config.js",
+    "build:prod": "webpack --env=env=production --config ./config/webpack/webpack.config.js",
     "type-check": "tsc",
     "bundle-analyze": "webpack-bundle-analyzer ./analysis/bundle-stats.json"
   },
@@ -31,6 +31,7 @@
     "@babel/preset-typescript": "^7.14.5",
     "@typescript-eslint/eslint-plugin": "^4.4.0",
     "@typescript-eslint/parser": "^4.4.0",
+    "@webpack-cli/serve": "^1.5.1",
     "babel-loader": "^8.2.2",
     "babel-plugin-module-resolver": "^4.1.0",
     "babel-plugin-styled-components": "^1.13.2",
@@ -50,8 +51,7 @@
     "style-loader": "^3.1.0",
     "webpack": "^4.37.0",
     "webpack-bundle-analyzer": "^4.4.2",
-    "webpack-cli": "^3.3.6",
-    "webpack-dev-server": "^3.11.2",
+    "webpack-cli": "4.7.0",
     "webpack-dotenv-plugin": "^2.1.0"
   }
 }
